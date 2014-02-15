@@ -2,78 +2,61 @@ import java.io.*;
 
 public class Game {
 
+    private static final String GAME_IN_PROCESS = "process";
+    private static final String WINNER = "winner";
+
     Field field = new Field();
-
     CheckProgress checker = new CheckProgress();
+    private String progress = GAME_IN_PROCESS;
+    int position;
+    boolean stroke = true;
+    char value = field.getXValue();
 
-    private String progress = "process";
+    public void game() {
 
-    public void game() throws IOException {
+        System.out.println("Hello! First move for X.");
 
-        boolean stroke = true;
-        char value = 'X';
+        while(progress == GAME_IN_PROCESS) {
 
+            determineStroke();
 
-
-        while(progress == "process") {
-
-            //X - true, O - false
-            if(stroke) {
-                value = 'X';
-            } else {
-                value = 'O';
+            try {
+            position = move();
+            } catch (IOException e) {
+                System.out.println("IOException: " + e);
             }
 
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            System.out.println("input a number");
-            int position = Integer.parseInt(br.readLine());
-
-            switch (position) {
-                case 1:
-                    System.out.println("in case 1");
-                    field.field[0][0] = value;
-                    break;
-                case 2:
-                    field.field[0][1] = value;
-                    break;
-                case 3:
-                    field.field[0][2] = value;
-                    break;
-                case 4:
-                    field.field[1][0] = value;
-                    break;
-                case 5:
-                    field.field[1][1] = value;
-                    break;
-                case 6:
-                    field.field[1][2] = value;
-                    break;
-                case 7:
-                    field.field[2][0] = value;
-                    break;
-                case 8:
-                    field.field[2][1] = value;
-                    break;
-                case 9:
-                    field.field[2][2] = value;
-                    break;
-            }
-
-
-            for(int i = 0; i < 3; i++) {
-                for(int j = 0; j < 3; j++) {
-                    System.out.print("[" + field.field[i][j] + "]");
-                }
-                System.out.println();
-            }
-
-            stroke = !stroke;
-
+            field.setCell(position, value);
+            field.printField();
+            invertStroke();
             progress = checker.check(field);
-
         }
-
         System.out.println("Winner is: " + value);
     }
 
+    private int move() throws IOException  {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Input a number of cell: ");
+        return Integer.parseInt(br.readLine());
+    }
+
+    private void determineStroke() {
+        if(stroke) {
+            value = field.getXValue();
+        } else {
+            value = field.getOValue();
+        }
+    }
+
+    private void invertStroke() {
+        stroke = !stroke;
+    }
+
+    public static String getGameInProcess() {
+        return GAME_IN_PROCESS;
+    }
+
+    public static String getWinner() {
+        return WINNER;
+    }
 }
