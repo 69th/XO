@@ -14,7 +14,10 @@ public class Game {
 
     public void game() {
 
-        System.out.println("Hello! First move for X.");
+        System.out.println("Hi! It's a tic-tac-toe (3x3 field).");
+        System.out.println("If you march to occupied cell - you're missing the move.");
+        System.out.println("If you march to nonexistent cell - you're missing the move.");
+        System.out.println("First move for X.");
 
         while(progress == GAME_IN_PROCESS) {
 
@@ -35,8 +38,8 @@ public class Game {
     }
 
     private int move() throws IOException  {
+        System.out.println("Input a number of cell (1-9): ");
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Input a number of cell: ");
         return Integer.parseInt(br.readLine());
     }
 

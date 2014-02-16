@@ -4,6 +4,7 @@ public class Field {
     private static final char DEFAULT_CELL_VALUE = ' ';
     private static final char X_VALUE = 'X';
     private static final char O_VALUE = 'O';
+    private static final String CELL_IS_OCCUPIED = "This cell is occupied. You miss the move.";
 
     private char field[][] = new char[FIELD_SIZE][FIELD_SIZE];
 
@@ -22,31 +23,67 @@ public class Field {
     public void setCell(int cell, char symbol) {
         switch (cell) {
             case 1:
-                field[0][0] = symbol;
+                if(field[0][0] == DEFAULT_CELL_VALUE) {
+                    field[0][0] = symbol;
+                } else {
+                    System.out.println(CELL_IS_OCCUPIED);
+                }
                 break;
             case 2:
-                field[0][1] = symbol;
+                if(field[0][1] == DEFAULT_CELL_VALUE) {
+                    field[0][1] = symbol;
+                } else {
+                    System.out.println(CELL_IS_OCCUPIED);
+                }
                 break;
             case 3:
-                field[0][2] = symbol;
+                if(field[0][2] == DEFAULT_CELL_VALUE) {
+                    field[0][2] = symbol;
+                } else {
+                    System.out.println(CELL_IS_OCCUPIED);
+                }
                 break;
             case 4:
-                field[1][0] = symbol;
+                if(field[1][0] == DEFAULT_CELL_VALUE) {
+                    field[1][0] = symbol;
+                } else {
+                    System.out.println(CELL_IS_OCCUPIED);
+                }
                 break;
             case 5:
-                field[1][1] = symbol;
+                if(field[1][1] == DEFAULT_CELL_VALUE) {
+                    field[1][1] = symbol;
+                } else {
+                    System.out.println(CELL_IS_OCCUPIED);
+                }
                 break;
             case 6:
-                field[1][2] = symbol;
+                if(field[1][2] == DEFAULT_CELL_VALUE) {
+                    field[1][2] = symbol;
+                } else {
+                    System.out.println(CELL_IS_OCCUPIED);
+                }
                 break;
             case 7:
-                field[2][0] = symbol;
+                if(field[2][0] == DEFAULT_CELL_VALUE) {
+                    field[2][0] = symbol;
+                } else {
+                    System.out.println(CELL_IS_OCCUPIED);
+                }
                 break;
             case 8:
-                field[2][1] = symbol;
+                if(field[2][1] == DEFAULT_CELL_VALUE) {
+                    field[2][1] = symbol;
+                } else {
+                    System.out.println(CELL_IS_OCCUPIED);
+                }
                 break;
             case 9:
-                field[2][2] = symbol;
+                if(field[2][2] == DEFAULT_CELL_VALUE) {
+                    field[2][2] = symbol;
+                } else {
+                    System.out.println(CELL_IS_OCCUPIED);
+                }
                 break;
         }
     }
